@@ -1,2 +1,4 @@
 # EJC
-EPAM Java Core tasks
+EPAM Java Core tasks:
+
+* task_01 - "hello world" with javac
