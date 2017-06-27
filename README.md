@@ -1,5 +1,7 @@
 # EJC
-EPAM Java Core tasks:
+Implementations of EPAM Java Core training tasks.
 
-* task_01 - "hello world" with javac
+Packages:
+* task_01 - "hello world" compiled with javac
 * task_02 - 
+* ArrayListCapacityReflection - 
