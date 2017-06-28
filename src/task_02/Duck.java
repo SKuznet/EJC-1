@@ -13,6 +13,10 @@ public class Duck {
         this.movementBehavior = movementBehavior;
     }
 
+    public MovementBehavior getMovementBehavior() {
+        return this.movementBehavior;
+    }
+
     public void move() {
         this.distanceTraveled += this.movementBehavior.move();
     }
