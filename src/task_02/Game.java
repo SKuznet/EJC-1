@@ -14,20 +14,26 @@ public class Game {
     private int funds;
     private int prize;
 
+    /**
+     * Initializing the game with funds and prize
+     * which is added or removed depending on how's
+     * game going
+     *
+     * @param funds your starting money
+     * @param prize money your can get (or lose)
+     */
     public Game(int funds, int prize) {
         this.funds = funds;
         this.prize = prize;
     }
 
-    public void setDucksNumber(int flyingDucksNumber, int runningDucksNumber) {
-        this.flyingDucksNumber = flyingDucksNumber;
-        this.runningDucksNumber = runningDucksNumber;
-    }
-
-    public void setRunningRange(int runningRange) {
-        this.runningRange = runningRange;
-    }
-
+    /**
+     * Huge pile of shitty code
+     *
+     * In case of apocalypse shoot the author
+     *
+     * @throws IOException
+     */
     public void play() throws IOException{
         // add 3 flying ducks
         for (int i = 0; i < this.flyingDucksNumber; i++) {
@@ -64,15 +70,29 @@ public class Game {
             }
             else {
                 this.funds -= this.prize;
+                System.out.println("DUCK #" + winner + " WINS!");
                 System.out.println("HAHA GET REKT SCRUB, YOUR MONEY: " + this.funds);
+            }
+
+            if (this.funds == 0) {
+                System.out.println("YOU HAVE NO MONEY, BYE!");
+                break;
             }
 
             System.out.print("CONTINUE? (y/n): ");
             command = this.reader.readLine();
             System.out.println();
+
+            if (!command.equals("y")) break;
+            else resetDucks();
         }
     }
 
+    /**
+     * It prints ...
+     *
+     * ducks
+     */
     public void printDucks() {
         String type;
         for (int i = 0; i < this.ducks.size(); i++) {
@@ -81,12 +101,31 @@ public class Game {
         }
     }
 
+    /**
+     * Wow, ducks can move
+     */
     public void moveAllDucks() {
         for (Duck duck: this.ducks ) {
             duck.move();
         }
     }
 
+    /**
+     * Resetting traveled distance for each duck
+     *
+     * if it's not dead already
+     */
+    public void resetDucks() {
+        for (Duck duck: this.ducks ) {
+            duck.resetDistanceTraveled();
+        }
+    }
+
+    /**
+     * Checking which duck survived the massacre
+     *
+     * @return int  duck's index
+     */
     public int checkWinner() {
         for (int i = 0; i < this.ducks.size(); i++) {
             if (this.ducks.get(i).getDistanceTraveled() >= this.runningRange)
