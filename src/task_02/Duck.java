@@ -1,19 +1,18 @@
 package task_02;
 
-public class Duck {
+public abstract class Duck {
     private MovementBehavior movementBehavior;
     private int distanceTraveled;
 
     /**
      * Create a duck with a specific behavior
      *
-     * @param movementBehavior
+     * @param movementBehavior  could be Running or Flying
      */
     public Duck(MovementBehavior movementBehavior) {
         this.movementBehavior = movementBehavior;
         this.distanceTraveled = 0;
     }
-
 
     /**
      * Checking duck's behavior

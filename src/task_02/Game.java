@@ -37,12 +37,12 @@ public class Game {
     public void play() throws IOException{
         // add 3 flying ducks
         for (int i = 0; i < this.flyingDucksNumber; i++) {
-            ducks.add(new Duck(new Flying()));
+            ducks.add(new FlyingDuck(new Flying()));
         }
 
         // add 2 running ducks
         for (int i = 0; i < this.runningDucksNumber; i++) {
-            ducks.add(new Duck(new Running()));
+            ducks.add(new RunningDuck(new Running()));
         }
 
         int option;
