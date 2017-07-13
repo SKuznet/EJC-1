@@ -1,30 +1,58 @@
 package task_03;
 
 public class Ship {
-  private int size = 0;
-  private int hits = 0;
+    private int size = 0;
+    private int hits = 0;
 
-  // vertical == true; horizontal == false
-  private boolean orientation = false;
+    // vertical == true; horizontal == false
+    private boolean orientation = false;
 
-  public Ship(int size, boolean orientation) {
-    this.size = size;
-    this.orientation = orientation;
-  }
+    /**
+     * Ship's constructor
+     *
+     * @param size  ship size
+     * @param orientation   orientation,
+     *                      true - vertical
+     *                      false - horizontal
+     */
+    public Ship(int size, boolean orientation) {
+        this.size = size;
+        this.orientation = orientation;
+    }
 
-  public boolean isSunk() {
-    return hits == size;
-  }
+    /**
+     * Checks if ship is sunk
+     *
+     * @return boolean  true - ship is sunk,
+     *                  false - is alive
+     */
+    public boolean isSunk() {
+        return hits == size;
+    }
 
-  public void hit() {
-    hits++;
-  }
+    /**
+     * Ship's got a hit
+     */
+    public void hit() {
+        hits++;
+    }
 
-  public boolean isVertical() {
-    return orientation;
-  }
+    /**
+     * Checks ship's orientation
+     *
+     * @return boolean  true - vertical,
+     *                  false - horizontal
+     */
+    public boolean isVertical() {
+        return orientation;
+    }
 
-  public int getSize() {
-    return size;
-  }
+    /**
+     * Gets ship's size
+     *
+     * @return int  ship's size
+     */
+    public int getSize() {
+        return size;
+    }
 }
