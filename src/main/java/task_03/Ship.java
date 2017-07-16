@@ -10,10 +10,10 @@ public class Ship {
     /**
      * Ship's constructor
      *
-     * @param size  ship size
-     * @param orientation   orientation,
-     *                      true - vertical
-     *                      false - horizontal
+     * @param size        ship size
+     * @param orientation orientation,
+     *                    true - vertical
+     *                    false - horizontal
      */
     public Ship(int size, boolean orientation) {
         this.size = size;
@@ -24,7 +24,7 @@ public class Ship {
      * Checks if ship is sunk
      *
      * @return boolean  true - ship is sunk,
-     *                  false - is alive
+     * false - is alive
      */
     public boolean isSunk() {
         return hits == size;
@@ -41,7 +41,7 @@ public class Ship {
      * Checks ship's orientation
      *
      * @return boolean  true - vertical,
-     *                  false - horizontal
+     * false - horizontal
      */
     public boolean isVertical() {
         return orientation;

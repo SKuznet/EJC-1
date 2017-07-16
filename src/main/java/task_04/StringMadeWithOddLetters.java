@@ -5,7 +5,7 @@ public class StringMadeWithOddLetters {
     /**
      * Creates a new String made with letters in even positions of input string
      *
-     * @param inputString   String to be processed
+     * @param inputString String to be processed
      * @return String   new String made with letters in even positions
      */
     public String makeStringFromEvenLetters(String inputString) {

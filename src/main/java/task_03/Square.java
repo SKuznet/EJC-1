@@ -8,10 +8,10 @@ public class Square {
      * Checks if the square was hit
      *
      * @return boolean  true - was hit,
-     *                  false - still alive
+     * false - still alive
      */
     public boolean hasBeenHit() {
-          return hasBeenHit;
+        return hasBeenHit;
     }
 
     /**
@@ -19,7 +19,7 @@ public class Square {
      * on the square
      *
      * @return boolean  true - contains ship,
-     *                  false - no ship
+     * false - no ship
      */
     public boolean hasShip() {
         return ship != null;
@@ -38,7 +38,7 @@ public class Square {
     /**
      * Sets a ship on the square
      *
-     * @param ship  ships to be set here
+     * @param ship ships to be set here
      */
     public void setShip(Ship ship) {
         this.ship = ship;

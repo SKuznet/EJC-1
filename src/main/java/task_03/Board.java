@@ -11,16 +11,16 @@ public class Board {
     /**
      * Sets up the board
      *
-     * @param size  size of the board
+     * @param size size of the board
      */
     public Board(int size) {
         this.size = size;
         board = new Square[size][size];
 
         for (int i = 0; i < size; i++) {
-          for (int j = 0; j < size; j++) {
-            board[i][j] = new Square();
-          }
+            for (int j = 0; j < size; j++) {
+                board[i][j] = new Square();
+            }
         }
         ships = new ArrayList<>();
     }
@@ -31,7 +31,7 @@ public class Board {
      * @param s ship
      * @param x x coordinate
      * @param y y coordinate
-     * @throws ArrayIndexOutOfBoundsException   is thrown if coordinates are incorrect
+     * @throws ArrayIndexOutOfBoundsException is thrown if coordinates are incorrect
      */
     public void placeShip(Ship s, int x, int y) throws ArrayIndexOutOfBoundsException {
         if (x < 0 || x >= size || y < 0 || y >= size)
@@ -42,10 +42,9 @@ public class Board {
                 if (y + i >= size || board[x][y + i].hasShip()) {
                     throw new ArrayIndexOutOfBoundsException("Cannot place ship here!");
                 }
-                board[x][y+i].setShip(s);
+                board[x][y + i].setShip(s);
             }
-        }
-        else {
+        } else {
             for (int i = 0; i < s.getSize(); i++) {
                 if (x + i >= size || board[x + i][y].hasShip()) {
                     throw new ArrayIndexOutOfBoundsException("Cannot place ship here!");
@@ -63,7 +62,7 @@ public class Board {
      * @param x x coordinate
      * @param y y coordinate
      * @return State    result of attack
-     * @throws ArrayIndexOutOfBoundsException   is thrown if coordinates are incorrect
+     * @throws ArrayIndexOutOfBoundsException is thrown if coordinates are incorrect
      */
     public State fire(int x, int y) throws ArrayIndexOutOfBoundsException {
         if (x < 0 || x >= size || y < 0 || y >= size)
@@ -80,13 +79,11 @@ public class Board {
             Ship ship = s.getShip();
             ship.hit();
             if (ship.isSunk()) {
-                return hasWon()? State.WIN : State.SINK;
-            }
-            else {
+                return hasWon() ? State.WIN : State.SINK;
+            } else {
                 return State.HIT;
             }
-        }
-        else {
+        } else {
             return State.MISS;
         }
     }
@@ -95,7 +92,7 @@ public class Board {
      * Checks if player has won
      *
      * @return boolean  true - win,
-     *                  false - battle continues
+     * false - battle continues
      */
     private boolean hasWon() {
         for (Ship s : ships) {

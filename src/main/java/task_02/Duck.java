@@ -7,7 +7,7 @@ public abstract class Duck {
     /**
      * Create a duck with a specific behavior
      *
-     * @param movementBehavior  could be Running or Flying
+     * @param movementBehavior could be Running or Flying
      */
     public Duck(MovementBehavior movementBehavior) {
         this.movementBehavior = movementBehavior;

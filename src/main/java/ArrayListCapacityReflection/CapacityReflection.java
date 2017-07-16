@@ -8,9 +8,9 @@ public class CapacityReflection {
     /**
      * Adds elements into ArrayList and prints its capacity
      *
-     * @param args          command line arguments
-     * @throws Exception    one of exceptions thrown
-     *                      by {@link #getCapacity} method
+     * @param args command line arguments
+     * @throws Exception one of exceptions thrown
+     *                   by {@link #getCapacity} method
      */
     public static void main(String[] args) throws Exception {
         ArrayList<Integer> list = new ArrayList<>(3);
@@ -26,11 +26,11 @@ public class CapacityReflection {
      * Gets list capacity by setting elementData field
      * accessible using Reflection API
      *
-     * @param list          list of any type
+     * @param list list of any type
      * @return int          list capacity
-     * @throws Exception    it could be one of these:
-     *                      NoSuchFieldException, SecurityException,
-     *                      IllegalArgumentException, IllegalAccessException
+     * @throws Exception it could be one of these:
+     *                   NoSuchFieldException, SecurityException,
+     *                   IllegalArgumentException, IllegalAccessException
      */
     private static int getCapacity(ArrayList<?> list) throws Exception {
         Field dataField = ArrayList.class.getDeclaredField("elementData");

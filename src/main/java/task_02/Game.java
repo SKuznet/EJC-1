@@ -1,15 +1,14 @@
 package task_02;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Game {
-    private ArrayList<Duck> ducks = new ArrayList<>();
     private static final int flyingDucksNumber = 3;
     private static final int runningDucksNumber = 2;
     private static final int runningRange = 500;
+    private ArrayList<Duck> ducks = new ArrayList<>();
     private int funds;
     private int prize;
 
@@ -28,7 +27,7 @@ public class Game {
 
     /**
      * Huge pile of shitty code
-     *
+     * <p>
      * In case of the Apocalypse shoot the author
      */
     public void play() {
@@ -90,7 +89,7 @@ public class Game {
 
     /**
      * It prints ...
-     *
+     * <p>
      * ducks
      */
     public void printDucks() {
@@ -105,18 +104,18 @@ public class Game {
      * Wow, ducks can move
      */
     public void moveAllDucks() {
-        for (Duck duck: this.ducks ) {
+        for (Duck duck : this.ducks) {
             duck.move();
         }
     }
 
     /**
      * Resetting traveled distance for each duck
-     *
+     * <p>
      * if it's not dead already
      */
     public void resetDucks() {
-        for (Duck duck: this.ducks ) {
+        for (Duck duck : this.ducks) {
             duck.resetDistanceTraveled();
         }
     }
