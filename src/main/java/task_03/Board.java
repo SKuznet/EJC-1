@@ -2,11 +2,13 @@ package task_03;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Board {
     private Square[][] board = null;
     private List<Ship> ships = null;
     private int size = 0;
+    private Random random = new Random();
 
     /**
      * Sets up the board
@@ -101,5 +103,45 @@ public class Board {
             }
         }
         return true;
+    }
+
+    /**
+     * Initializing the board with ships
+     */
+    public void initialize() {
+        // 1 4-square ship
+        this.ships.add(new Ship(4, this.random.nextBoolean()));
+
+        // 2 3-square ships
+        for (int i = 0; i < 2; i++) {
+            this.ships.add(new Ship(3, this.random.nextBoolean()));
+        }
+
+        // 3 2-square ships
+        for (int i = 0; i < 3; i++) {
+            this.ships.add(new Ship(2, this.random.nextBoolean()));
+        }
+
+        // 4 1-square ships
+        for (int i = 0; i < 4; i++) {
+            this.ships.add(new Ship(1, this.random.nextBoolean()));
+        }
+
+        // temporary position for placing ship
+        int x = 0;
+        int y = 0;
+        for (Ship ship: this.ships) {
+            x = this.random.nextInt(size);
+            y = this.random.nextInt(size);
+            while (true) {
+                try {
+                    this.placeShip(ship, x, y);
+                    break;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    x = this.random.nextInt(size);
+                    y = this.random.nextInt(size);
+                }
+            }
+        }
     }
 }

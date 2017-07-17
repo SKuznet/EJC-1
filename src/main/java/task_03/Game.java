@@ -7,6 +7,7 @@ public class Game {
     public void start() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -11,7 +11,7 @@ public class Main {
             b.placeShip(s1, 0, 1);
             b.placeShip(s2, 5, 5);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         try {
