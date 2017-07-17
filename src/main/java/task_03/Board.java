@@ -54,8 +54,6 @@ public class Board {
                 board[x + i][y].setShip(s);
             }
         }
-
-        ships.add(s);
     }
 
     /**
