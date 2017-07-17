@@ -142,4 +142,14 @@ public class Board {
             }
         }
     }
+
+    /**
+     * String representation of the board
+     *
+     * @return String   representation of the board
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
 }

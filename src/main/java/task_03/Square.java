@@ -50,4 +50,14 @@ public class Square {
     public void hit() {
         hasBeenHit = true;
     }
+
+    /**
+     * String representation of the square
+     *
+     * @return String   representation of the square
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
 }
