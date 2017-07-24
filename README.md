@@ -10,4 +10,10 @@ Packages:
 
 * task_04 - making a new string from letters in even positions of input string; palindrome sub-task
 
+* task_05 - 
+
+* task_06 - 
+
+* task_07 - 
+
 * ArrayListCapacityReflection - checking ArrayList capacity with Reflection API
