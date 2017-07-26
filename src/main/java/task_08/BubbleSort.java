@@ -9,18 +9,16 @@ public class BubbleSort {
      */
     public void sort(int[] inputArray) {
         while (true) {
-            int numberOfElementsInPlace = 0;
+            boolean swapped = false;
             for (int i = 0; i < inputArray.length - 1; i++) {
                 if (inputArray[i] > inputArray[i + 1]) {
                     int elementToSwap = inputArray[i];
                     inputArray[i] = inputArray[i + 1];
                     inputArray[i + 1] = elementToSwap;
-                }
-                else {
-                    numberOfElementsInPlace++;
+                    swapped = true;
                 }
             }
-            if (numberOfElementsInPlace == inputArray.length - 1) {
+            if (!swapped) {
                 break;
             }
         }
