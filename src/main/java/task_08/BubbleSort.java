@@ -1,12 +1,13 @@
 package task_08;
 
-public class BubbleSort {
+public class BubbleSort implements SortingAlgorithm{
 
     /**
      * Implementation of bubble sort
      *
      * @param inputArray - array of integers to sort
      */
+    @Override
     public void sort(int[] inputArray) {
         while (true) {
             int numberOfElementsInPlace = 0;

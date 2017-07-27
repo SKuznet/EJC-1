@@ -3,7 +3,7 @@ package task_05;
 public class CountSameLetters {
 
     /**
-     * Counts maximum equal consequent letters size
+     * Counts maximum size of sequence with equal letters
      *
      * @param inputString   string to process
      * @return  int maximum sequence size

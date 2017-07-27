@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         // bubble sort
+        System.out.println("Bubble sort");
         fillArrayWithRandomIntegers(10);
         System.out.println(Arrays.toString(inputArray));
 
@@ -17,13 +18,22 @@ public class Main {
         bubbleSort.sort(inputArray);
         System.out.println(Arrays.toString(inputArray));
 
+        System.out.println();
+
         // merge sort
-//        fillArrayWithRandomIntegers(10);
-//        System.out.println(inputArray);
-//
-//        MergeSort mergeSort = new MergeSort();
-//        mergeSort.sort(inputArray);
-//        System.out.println(inputArray);
+        System.out.println("Merge sort");
+        fillArrayWithRandomIntegers(10);
+        System.out.println(Arrays.toString(inputArray));
+
+        MergeSort mergeSort = new MergeSort();
+        mergeSort.sort(inputArray);
+        System.out.println(Arrays.toString(inputArray));
+
+        System.out.println();
+
+        // binary search
+        System.out.println("Binary search");
+
     }
 
     /**
