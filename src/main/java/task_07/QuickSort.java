@@ -23,7 +23,7 @@ public class QuickSort implements SortingAlgorithm {
     private void quickSort(int low, int high) {
         int i = low;
         int j = high;
-        int pivot = this.inputArray[low + (high-low) / 2];
+        int pivot = this.inputArray[low + (high - low) / 2];
 
         while (i <= j) {
             while (this.inputArray[i] < pivot) {

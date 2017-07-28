@@ -12,10 +12,10 @@ public class InsertionSort implements SortingAlgorithm {
         int temp;
         for (int i = 1; i < inputArray.length; i++) {
             for(int j = i ; j > 0 ; j--){
-                if(inputArray[j] < inputArray[j-1]){
+                if(inputArray[j] < inputArray[j - 1]){
                     temp = inputArray[j];
-                    inputArray[j] = inputArray[j-1];
-                    inputArray[j-1] = temp;
+                    inputArray[j] = inputArray[j - 1];
+                    inputArray[j - 1] = temp;
                 }
             }
         }
