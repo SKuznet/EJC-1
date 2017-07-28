@@ -2,24 +2,31 @@ package task_09;
 
 public class SelectionSort implements SortingAlgorithm {
 
+    /**
+     * Calls selection sort
+     *
+     * @param inputArray - array to sort
+     */
     @Override
     public void sort(int[] inputArray) {
-
+        selectionSort(inputArray);
     }
 
-    public static int[] doSelectionSort(int[] arr){
-
-        for (int i = 0; i < arr.length - 1; i++)
-        {
+    /**
+     * Implementation of selection sort
+     *
+     * @param inputArray - array to sort
+     */
+    private void selectionSort(int[] inputArray) {
+        for (int i = 0; i < inputArray.length - 1; i++) {
             int index = i;
-            for (int j = i + 1; j < arr.length; j++)
-                if (arr[j] < arr[index])
+            for (int j = i + 1; j < inputArray.length; j++)
+                if (inputArray[j] < inputArray[index])
                     index = j;
 
-            int smallerNumber = arr[index];
-            arr[index] = arr[i];
-            arr[i] = smallerNumber;
+            int smallerNumber = inputArray[index];
+            inputArray[index] = inputArray[i];
+            inputArray[i] = smallerNumber;
         }
-        return arr;
     }
 }
