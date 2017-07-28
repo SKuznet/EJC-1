@@ -19,36 +19,36 @@ public class MergeSort implements SortingAlgorithm {
     /**
      * Implementation of merge sort
      *
-     * @param low - lower boundary
-     * @param high - upper boundary
+     * @param lowerBoundary - lower boundary
+     * @param higherBoundary - upper boundary
      */
-    private void mergeSort(int low, int high) {
-        if (low < high) {
-            int middle = low + (high - low) / 2;
-            mergeSort(low, middle);
-            mergeSort(middle + 1, high);
-            merge(low, middle, high);
+    private void mergeSort(int lowerBoundary, int higherBoundary) {
+        if (lowerBoundary < higherBoundary) {
+            int middleBoundary = lowerBoundary + (higherBoundary - lowerBoundary) / 2;
+            mergeSort(lowerBoundary, middleBoundary);
+            mergeSort(middleBoundary + 1, higherBoundary);
+            merge(lowerBoundary, middleBoundary, higherBoundary);
         }
     }
 
     /**
      * Merges two sub-arrays
      *
-     * @param low - lower boundary
-     * @param middle - middle boundary
-     * @param high - upper boundary
+     * @param lowerBoundary - lower boundary
+     * @param middleBoundary - middle boundary
+     * @param higherBoundary - upper boundary
      */
-    private void merge(int low, int middle, int high) {
+    private void merge(int lowerBoundary, int middleBoundary, int higherBoundary) {
 
-        for (int i = low; i <= high; i++) {
+        for (int i = lowerBoundary; i <= higherBoundary; i++) {
             this.helperArray[i] = this.inputArray[i];
         }
 
-        int i = low;
-        int j = middle + 1;
-        int k = low;
+        int i = lowerBoundary;
+        int j = middleBoundary + 1;
+        int k = lowerBoundary;
 
-        while (i <= middle && j <= high) {
+        while (i <= middleBoundary && j <= higherBoundary) {
             if (this.helperArray[i] <= this.helperArray[j]) {
                 this.inputArray[k] = this.helperArray[i];
                 i++;
@@ -59,7 +59,7 @@ public class MergeSort implements SortingAlgorithm {
             k++;
         }
 
-        while (i <= middle) {
+        while (i <= middleBoundary) {
             this.inputArray[k] = this.helperArray[i];
             k++;
             i++;
