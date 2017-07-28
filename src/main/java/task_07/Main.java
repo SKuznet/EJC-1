@@ -14,8 +14,8 @@ public class Main {
         fillArrayWithRandomIntegers(10);
         System.out.println(Arrays.toString(inputArray));
 
-        InsertionSort bubbleSort = new InsertionSort();
-        bubbleSort.sort(inputArray);
+        InsertionSort insertionSort = new InsertionSort();
+        insertionSort.sort(inputArray);
         System.out.println(Arrays.toString(inputArray));
 
         System.out.println();
@@ -25,8 +25,8 @@ public class Main {
         fillArrayWithRandomIntegers(10);
         System.out.println(Arrays.toString(inputArray));
 
-        QuickSort mergeSort = new QuickSort();
-        mergeSort.sort(inputArray);
+        QuickSort quickSort = new QuickSort();
+        quickSort.sort(inputArray);
         System.out.println(Arrays.toString(inputArray));
     }
 

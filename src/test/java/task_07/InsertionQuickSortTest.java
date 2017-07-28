@@ -34,7 +34,7 @@ public class InsertionQuickSortTest {
      */
     private void testSort(SortingAlgorithm sortingAlgorithm) {
         for (int i = 1; i <= 2000 ; i++) {
-            fillListWithRandomIntegers(i);
+            fillArrayWithRandomIntegers(i);
 
             sortingAlgorithm.sort(inputArray);
             Arrays.sort(validationArray);
@@ -48,7 +48,7 @@ public class InsertionQuickSortTest {
      *
      * @param arraySize - size of generated array
      */
-    private void fillListWithRandomIntegers(int arraySize) {
+    private void fillArrayWithRandomIntegers(int arraySize) {
         inputArray = new int[arraySize];
         validationArray = new int[arraySize];
 

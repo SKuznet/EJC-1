@@ -18,4 +18,6 @@ Packages:
 
 * task_08 - bubble and merge sort; binary search
 
+* task_09 - radix and selection sort
+
 * ArrayListCapacityReflection - checking ArrayList capacity with Reflection API

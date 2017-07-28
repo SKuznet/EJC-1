@@ -33,7 +33,14 @@ public class Main {
 
         // binary search
         System.out.println("Binary search");
+        fillArrayWithRandomIntegers(10);
+        Arrays.sort(inputArray);
+        System.out.println(Arrays.toString(inputArray));
 
+        BinarySearch binarySearch = new BinarySearch();
+        int elementToFind = inputArray[random.nextInt(10)];
+        System.out.println("Element to find: " + elementToFind);
+        System.out.println("Result: " + binarySearch.search(elementToFind, inputArray));
     }
 
     /**
