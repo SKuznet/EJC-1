@@ -22,9 +22,12 @@ public class RadixSort implements SortingAlgorithm{
      */
     private int getMaxNumber(int[] inputArray) {
         int maxNumber = inputArray[0];
+
         for (int i = 1; i < inputArray.length; i++)
-            if (inputArray[i] > maxNumber)
+            if (inputArray[i] > maxNumber) {
                 maxNumber = inputArray[i];
+            }
+
         return maxNumber;
     }
 

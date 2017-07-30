@@ -11,18 +11,21 @@ public class BinarySearch {
      *               -1 if it hasn't been found
      */
     public int search(int elementToFind, int[] targetArray) {
-        int low = 0;
-        int high = targetArray.length - 1;
+        int lowerBoundary = 0;
+        int higherBoundary = targetArray.length - 1;
 
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (elementToFind < targetArray[mid]) {
-                high = mid - 1;
+        while (lowerBoundary <= higherBoundary) {
+            int middleBoundary = lowerBoundary + (higherBoundary - lowerBoundary) / 2;
+
+            if (elementToFind < targetArray[middleBoundary]) {
+                higherBoundary = middleBoundary - 1;
             }
-            else if (elementToFind > targetArray[mid]) {
-                low = mid + 1;
+            else if (elementToFind > targetArray[middleBoundary]) {
+                lowerBoundary = middleBoundary + 1;
             }
-            else return mid;
+            else {
+                return middleBoundary;
+            }
         }
 
         return -1;
