@@ -20,4 +20,6 @@ Packages:
 
 * task_09 - radix and selection sort
 
+* task_10 - concurrency: notifyAll, wait, start, join, yield methods
+
 * ArrayListCapacityReflection - checking ArrayList capacity with Reflection API
