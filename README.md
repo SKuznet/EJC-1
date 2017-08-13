@@ -1,7 +1,7 @@
 # EJC
 Implementations of EPAM Java Core training tasks.
 
-Workflow: [a link](https://workflowy.com/s/EZWQ.hTcu5DIBwh)
+Workflow: [https://workflowy.com/s/EZWQ.hTcu5DIBwh](https://workflowy.com/s/EZWQ.hTcu5DIBwh)
 
 Package structure:
 * task_01 - "hello world" compiled with javac
