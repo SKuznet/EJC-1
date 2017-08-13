@@ -1,7 +1,9 @@
 # EJC
 Implementations of EPAM Java Core training tasks.
 
-Packages:
+Workflow: [a link](https://workflowy.com/s/EZWQ.hTcu5DIBwh)
+
+Package structure:
 * task_01 - "hello world" compiled with javac
 
 * task_02 - "duck races", implementation of Strategy pattern
@@ -22,4 +24,4 @@ Packages:
 
 * task_10 - concurrency: notifyAll, wait, start, join, yield methods
 
-* ArrayListCapacityReflection - checking ArrayList capacity with Reflection API
+* task_11 - 
