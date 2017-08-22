@@ -1,63 +1,94 @@
 package task_03;
 
 public class Square {
-    private Ship ship = null;
-    private boolean hasBeenHit = false;
+    private boolean hasBeenShot = false;
+    private boolean containsShip = false;
+    private int row = -1;
+    private int column = -1;
 
     /**
-     * Checks if the square was hit
+     * Constructs in specified position
      *
-     * @return boolean  true - was hit,
-     * false - still alive
+     * @param row - vertical of the square
+     * @param column - horizontal position of the square
      */
-    public boolean hasBeenHit() {
-        return hasBeenHit;
+    public Square(int row, int column) {
+        this.row = row;
+        this.column = column;
     }
 
     /**
-     * Checks if a ship was placed
-     * on the square
+     * Sets square's row
      *
-     * @return boolean  true - contains ship,
-     * false - no ship
+     * @param row - square's vertical position
      */
-    public boolean hasShip() {
-        return ship != null;
+    public void setRow(int row) {
+        this.row = row;
     }
 
     /**
-     * Gets a link to the ship
-     * contained by the square
+     * Returns square's vertical position
      *
-     * @return Ship link to the ship
+     * @return int - square's vertical position
      */
-    public Ship getShip() {
-        return ship;
+    public int getRow() {
+        return this.row;
     }
 
     /**
-     * Sets a ship on the square
+     * Sets square's horizontal position
      *
-     * @param ship ships to be set here
+     * @param column - square's horizontal position to be set
      */
-    public void setShip(Ship ship) {
-        this.ship = ship;
+    public void setColumn(int column) {
+        this.column = column;
     }
 
     /**
-     * Marks the square as hit
+     * Returns square's horizontal position
+     *
+     * @return int - square's horizontal position
      */
-    public void hit() {
-        hasBeenHit = true;
+    public int getColumn() {
+        return this.column;
     }
 
     /**
-     * String representation of the square
+     * Checks if the square has been shot
      *
-     * @return String   representation of the square
+     * @return boolean - square is dead or alive
      */
-    @Override
-    public String toString() {
-        return "";
+    public boolean isShot() {
+        return this.isShot;
+    }
+
+    /**
+     * Sets square's flag is it's been shot
+     *
+     * @param isShot - sets specific flag
+     */
+    public void setShotFlag(boolean isShot) {
+        this.isShot = isShot;
+    }
+
+    /**
+     * Checks if square is part of the ship
+     *
+     * @return boolean - square is part of the ship or not
+     */
+    public boolean containsShip() {
+        return this.containsShip;
+    }
+
+    public void setPartOfTheShip(boolean isPartOfTheShip) {
+        this.isPartOfTheShip = isPartOfTheShip;
+    }
+
+    /**
+     * reset cell state by setting cell is not part of ship and is not shot
+     */
+    public void emptySquare() {
+        this.isShot = false;
+        this.isPartOfTheShip = false;
     }
 }
