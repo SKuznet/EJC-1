@@ -3,26 +3,15 @@ package task_03;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Ship class represent ship on game board
- */
 public class Ship {
     private final int SHIPS_TYPES = 4;
-    private final int MAX_SHIP_SIZE = 4;
-
-    /**
-     * List of cells which are parts of the this ship
-     */
-    private List<Cell> cellList;
-    /**
-     * List of cells which surround this ship
-     */
-    private List<Cell> cellShadowList;
+    private List<Square> squares;
+    private List<Square> surroundingSquares;
     private int shipSize;
 
     public Ship() {
-        this.cellList = new ArrayList<>(this.MAX_SHIP_SIZE);
-        this.cellShadowList = new ArrayList<>(this.MAX_SHIP_SIZE * 2 + 6);
+        this.squares = new ArrayList<>(4);
+        this.surroundingSquares = new ArrayList<>(14);
     }
 
     public Ship(int shipSize) {
@@ -31,15 +20,15 @@ public class Ship {
     }
 
     public int getShipSize() {
-        return shipSize;
+        return this.shipSize;
     }
 
-    public List<Cell> getCellList() {
-        return cellList;
+    public List<Square> getSquares() {
+        return this.squares;
     }
 
-    public List<Cell> getCellShadowList() {
-        return cellShadowList;
+    public List<Square> getSurroundingSquares() {
+        return this.surroundingSquares;
     }
 
     /**
@@ -48,8 +37,8 @@ public class Ship {
      * @return <code>true</code> if at least one cell from cellList isn't shot otherwise <code>false</code>
      */
     public boolean isAlive() {
-        for (Cell cell : cellList) {
-            if (!cell.isShot()) {
+        for (Square square : this.squares) {
+            if (!square.isShot()) {
                 return true;
             }
         }
@@ -63,9 +52,9 @@ public class Ship {
      */
     public int getMaxShipRow() {
         int maxShipRow = -1;
-        for (Cell cell : cellList) {
-            if (maxShipRow < cell.getRow()) {
-                maxShipRow = cell.getRow();
+        for (Square square : this.squares) {
+            if (maxShipRow < square.getRow()) {
+                maxShipRow = square.getRow();
             }
         }
         return maxShipRow;
@@ -78,9 +67,9 @@ public class Ship {
      */
     public int getMinShipRow() {
         int minShipRow = 100;
-        for (Cell cell : cellList) {
-            if (minShipRow > cell.getRow()) {
-                minShipRow = cell.getRow();
+        for (Square square : this.squares) {
+            if (minShipRow > square.getRow()) {
+                minShipRow = square.getRow();
             }
         }
         return minShipRow;
@@ -93,9 +82,9 @@ public class Ship {
      */
     public int getMaxShipCol() {
         int maxShipCol = -1;
-        for (Cell cell : cellList) {
-            if (maxShipCol < cell.getCol()) {
-                maxShipCol = cell.getCol();
+        for (Square square : this.squares) {
+            if (maxShipCol < square.getColumn()) {
+                maxShipCol = square.getColumn();
             }
         }
         return maxShipCol;
@@ -108,9 +97,9 @@ public class Ship {
      */
     public int getMinShipCol() {
         int minShipCol = 100;
-        for (Cell cell : cellList) {
-            if (minShipCol > cell.getCol()) {
-                minShipCol = cell.getCol();
+        for (Square square : this.squares) {
+            if (minShipCol > square.getColumn()) {
+                minShipCol = square.getColumn();
             }
         }
         return minShipCol;

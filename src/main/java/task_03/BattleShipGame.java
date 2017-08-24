@@ -28,11 +28,7 @@ public class BattleShipGame {
      * <p>User can choose between: exit game, reset game, enter shot coordinates
      */
     public void startGame() {
-        System.out.println("Hello! This is BattleShip Game! Good Luck!");
-
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("Enter any key to start");
-            reader.readLine();
 
             showMenu();
 
@@ -89,7 +85,7 @@ public class BattleShipGame {
      * Show game information and menu
      */
     private void showMenu() {
-        System.out.println("\n\n<<  ======================  BATTLESHIP GAME  ======================  >>");
+        System.out.println("\n<<  ======================  BATTLESHIP GAME  ======================  >>");
         System.out.println("Enter 1 to reset game");
         System.out.println("Enter 0 to exit");
         System.out.println("Choose one of empty cells to shoot by entering combination (for example \"A4\")." +

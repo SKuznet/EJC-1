@@ -19,15 +19,15 @@ class GameBoard {
 
 
 
-    private Cell[][] gameBoardCells;
+    private Square[][] gameBoardCells;
     /**
      * list with available cells to be parts of the ship
      */
-    private List<Cell> availableCellList;
+    private List<Square> availableCellList;
     private List<Ship> shipList;
 
     GameBoard() {
-        this.gameBoardCells = new Cell[this.BOARD_SIZE][this.BOARD_SIZE];
+        this.gameBoardCells = new Square[this.BOARD_SIZE][this.BOARD_SIZE];
         this.availableCellList = new ArrayList<>(this.BOARD_SIZE * this.BOARD_SIZE);
         this.shipList = new ArrayList<>();
         makeRandomBoard();
@@ -41,9 +41,9 @@ class GameBoard {
         for (int i = 0; i < gameBoardCells.length; ++i) {
             for (int j = 0; j < gameBoardCells[i].length; ++j) {
                 if (gameBoardCells[i][j] == null) {
-                    gameBoardCells[i][j] = new Cell(i, j);
+                    gameBoardCells[i][j] = new Square(i, j);
                 } else {
-                    gameBoardCells[i][j].clearCell();
+                    gameBoardCells[i][j].emptySquare();
                 }
                 availableCellList.add(gameBoardCells[i][j]);
             }
@@ -66,17 +66,17 @@ class GameBoard {
      */
     private void arrangeShip(Ship ship) {
         int shipSize = ship.getShipSize();
-        Cell cell = availableCellList.get((int) (Math.random() * availableCellList.size()));
+        Square square = availableCellList.get((int) (Math.random() * availableCellList.size()));
         if (shipSize > 1) {
-            List<List<Cell>> positionList = new ArrayList<>(shipSize * 2);
-            List<Cell> currentPositionList;
+            List<List<Square>> positionList = new ArrayList<>(shipSize * 2);
+            List<Square> currentPositionList;
             nextPositionHorizontal:
             for (int i = 0; i < shipSize; ++i) {
                 currentPositionList = new ArrayList<>(shipSize);
                 for (int j = 0; j < shipSize; ++j) {
-                    if (cell.getRow() - i + j < gameBoardCells.length && cell.getRow() - i + j >= 0
-                            && availableCellList.contains(gameBoardCells[cell.getRow() - i + j][cell.getCol()])) {
-                        currentPositionList.add(gameBoardCells[cell.getRow() - i + j][cell.getCol()]);
+                    if (square.getRow() - i + j < gameBoardCells.length && square.getRow() - i + j >= 0
+                            && availableCellList.contains(gameBoardCells[square.getRow() - i + j][square.getColumn()])) {
+                        currentPositionList.add(gameBoardCells[square.getRow() - i + j][square.getColumn()]);
                     } else {
                         continue nextPositionHorizontal;
                     }
@@ -87,9 +87,9 @@ class GameBoard {
             for (int i = 0; i < shipSize; ++i) {
                 currentPositionList = new ArrayList<>(shipSize);
                 for (int j = 0; j < shipSize; ++j) {
-                    if (cell.getCol() - i + j < gameBoardCells[0].length && cell.getCol() - i + j >= 0
-                            && availableCellList.contains(gameBoardCells[cell.getRow()][cell.getCol() - i + j])) {
-                        currentPositionList.add(gameBoardCells[cell.getRow()][cell.getCol() - i + j]);
+                    if (square.getColumn() - i + j < gameBoardCells[0].length && square.getColumn() - i + j >= 0
+                            && availableCellList.contains(gameBoardCells[square.getRow()][square.getColumn() - i + j])) {
+                        currentPositionList.add(gameBoardCells[square.getRow()][square.getColumn() - i + j]);
                     } else {
                         continue nextPositionVertical;
                     }
@@ -97,15 +97,15 @@ class GameBoard {
                 positionList.add(currentPositionList);
             }
             currentPositionList = positionList.get((int) (Math.random() * positionList.size()));
-            for (Cell currCell : currentPositionList) {
-                currCell.setPartOfShip(true);
-                ship.getCellList().add(currCell);
+            for (Square currCell : currentPositionList) {
+                currCell.setPartOfTheShip(true);
+                ship.getSquares().add(currCell);
             }
         } else if (shipSize == 1) {
-            cell.setPartOfShip(true);
-            ship.getCellList().add(cell);
+            square.setPartOfTheShip(true);
+            ship.getSquares().add(square);
         }
-        availableCellList.removeAll(ship.getCellList());
+        availableCellList.removeAll(ship.getSquares());
         setShipShadow(ship);
         shipList.add(ship);
     }
@@ -131,21 +131,21 @@ class GameBoard {
 
         for (int i = 0; i < horLength; ++i) {
             if (isExistMinRow) {
-                ship.getCellShadowList().add(gameBoardCells[minShadowRow][minShadowCol + i]);
+                ship.getSurroundingSquares().add(gameBoardCells[minShadowRow][minShadowCol + i]);
             }
             if (isExistMaxRow) {
-                ship.getCellShadowList().add(gameBoardCells[maxShadowRow][minShadowCol + i]);
+                ship.getSurroundingSquares().add(gameBoardCells[maxShadowRow][minShadowCol + i]);
             }
         }
         for (int i = verticalStartPos; i < verticalLength; ++i) {
             if (isExistMinCol) {
-                ship.getCellShadowList().add(gameBoardCells[minShadowRow + i][minShadowCol]);
+                ship.getSurroundingSquares().add(gameBoardCells[minShadowRow + i][minShadowCol]);
             }
             if (isExistMaxCol) {
-                ship.getCellShadowList().add(gameBoardCells[minShadowRow + i][maxShadowCol]);
+                ship.getSurroundingSquares().add(gameBoardCells[minShadowRow + i][maxShadowCol]);
             }
         }
-        availableCellList.removeAll(ship.getCellShadowList());
+        availableCellList.removeAll(ship.getSurroundingSquares());
     }
 
     /**
@@ -170,17 +170,17 @@ class GameBoard {
         if (gameBoardCells[row][col].isShot()) {
             return -1;
         }
-        gameBoardCells[row][col].setShot(true);
-        if (gameBoardCells[row][col].isPartOfShip()) {
+        gameBoardCells[row][col].setShotFlag(true);
+        if (gameBoardCells[row][col].containsShip()) {
             Ship currentShip = null;
             for (Ship ship : shipList) {
-                if (ship.getCellList().contains(gameBoardCells[row][col])) {
+                if (ship.getSquares().contains(gameBoardCells[row][col])) {
                     currentShip = ship;
                 }
             }
             if (currentShip != null && !currentShip.isAlive()) {
-                for (Cell shadowCell : currentShip.getCellShadowList()) {
-                    shadowCell.setShot(true);
+                for (Square shadowCell : currentShip.getSurroundingSquares()) {
+                    shadowCell.setShotFlag(true);
                 }
                 shipList.remove(currentShip);
             }
@@ -211,7 +211,7 @@ class GameBoard {
             }
             for (int j = 0; j < this.BOARD_SIZE; ++j) {
                 if (gameBoardCells[i][j].isShot()) {
-                    if (gameBoardCells[i][j].isPartOfShip()) {
+                    if (gameBoardCells[i][j].containsShip()) {
                         System.out.print(this.SHIP_SHOT_CELL + "  ");
                     } else {
                         System.out.print(this.MISS_SHOT_CELL + "  ");

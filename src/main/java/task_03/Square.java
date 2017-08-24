@@ -59,7 +59,7 @@ public class Square {
      * @return boolean - square is dead or alive
      */
     public boolean isShot() {
-        return this.isShot;
+        return this.hasBeenShot;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Square {
      * @param isShot - sets specific flag
      */
     public void setShotFlag(boolean isShot) {
-        this.isShot = isShot;
+        this.hasBeenShot = isShot;
     }
 
     /**
@@ -81,14 +81,14 @@ public class Square {
     }
 
     public void setPartOfTheShip(boolean isPartOfTheShip) {
-        this.isPartOfTheShip = isPartOfTheShip;
+        this.containsShip = isPartOfTheShip;
     }
 
     /**
      * reset cell state by setting cell is not part of ship and is not shot
      */
     public void emptySquare() {
-        this.isShot = false;
-        this.isPartOfTheShip = false;
+        this.hasBeenShot = false;
+        this.containsShip = false;
     }
 }
