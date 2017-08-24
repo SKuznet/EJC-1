@@ -8,12 +8,11 @@ import java.io.InputStreamReader;
  * BattleShipGame represents simple console BattleShip game implementation
  * <p> In this version of game user have 60 shot attempts to kill all randomly arranged ships on game board
  *
- * @author Irina Vasileva
  */
 public class BattleShipGame {
     private final int SHIPS_COUNT = 10;
 
-    private final String LETTERS = "ABCDEFGHIJ";
+    private final String LETTERS = "abcdefghij";
 
     private GameBoard gameBoard;
     private int shotAttempts = 60;
@@ -85,11 +84,9 @@ public class BattleShipGame {
      * Show game information and menu
      */
     private void showMenu() {
-        System.out.println("\n<<  ======================  BATTLESHIP GAME  ======================  >>");
-        System.out.println("Enter 1 to reset game");
-        System.out.println("Enter 0 to exit");
-        System.out.println("Choose one of empty cells to shoot by entering combination (for example \"A4\")." +
-                "\nShooting into non empty cell doesn't make sense");
+        System.out.println("\nThe battleship game");
+        System.out.println("Options: 1 - reset game, 0 - exit");
+        System.out.println("Choose a square like b2, d5 etc.");
         System.out.println();
 
         System.out.print("   ");
@@ -101,10 +98,9 @@ public class BattleShipGame {
         gameBoard.showGameBoard();
         System.out.println();
 
-        System.out.println("INFORMATION:\n\".\" - empty cell  \"o\" - miss cell  \"*\" - hit cell");
-        System.out.print("Alive ships: " + gameBoard.getAliveShipsCount() + "  ");
-        System.out.print("Destroyed ships: " + (this.SHIPS_COUNT - gameBoard.getAliveShipsCount()) + "  ");
-        System.out.println("Shots that you have: " + shotAttempts);
-        System.out.println("==================================================");
+        System.out.println("Info:\n\".\" - empty cell  \"o\" - miss cell  \"*\" - hit cell");
+        System.out.print("Ships alive: " + gameBoard.getAliveShipsCount() + "  ");
+        System.out.print("Ships destroyed: " + (this.SHIPS_COUNT - gameBoard.getAliveShipsCount()) + "  ");
+        System.out.println("Shots remain: " + shotAttempts);
     }
 }
