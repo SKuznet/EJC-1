@@ -9,16 +9,16 @@ import java.io.InputStreamReader;
  * <p> In this version of game user have 60 shot attempts to kill all randomly arranged ships on game board
  *
  */
-public class BattleShipGame {
+public class Game {
     private final int SHIPS_COUNT = 10;
 
     private final String LETTERS = "abcdefghij";
 
-    private GameBoard gameBoard;
+    private Board board;
     private int shotAttempts = 60;
 
-    public BattleShipGame() {
-        gameBoard = new GameBoard();
+    public Game() {
+        this.board = new Board();
     }
 
     /**
@@ -38,7 +38,7 @@ public class BattleShipGame {
                 switch (playerChoice) {
 
                     case "1":
-                        gameBoard.reArrangeGameBoard();
+                        this.board.reArrangeGameBoard();
                         shotAttempts = 60;
                         showMenu();
                         break;
@@ -51,10 +51,10 @@ public class BattleShipGame {
                         if (playerChoice.matches("[a-jA-J]([1-9]|10)")) {
                             int col = this.LETTERS.indexOf(playerChoice.charAt(0));
                             int row = Integer.parseInt(playerChoice.substring(1, playerChoice.length())) - 1;
-                            int hit = gameBoard.markShot(row, col);
+                            int hit = this.board.markShot(row, col);
                             if (hit > -1) {
                                 --shotAttempts;
-                                if (gameBoard.getAliveShipsCount() == 0) {
+                                if (this.board.getAliveShipsCount() == 0) {
                                     break nextPlayerChoice;
                                 }
                                 showMenu();
@@ -95,12 +95,12 @@ public class BattleShipGame {
         }
         System.out.println();
 
-        gameBoard.showGameBoard();
+        this.board.showGameBoard();
         System.out.println();
 
         System.out.println("Info:\n\".\" - empty cell  \"o\" - miss cell  \"*\" - hit cell");
-        System.out.print("Ships alive: " + gameBoard.getAliveShipsCount() + "  ");
-        System.out.print("Ships destroyed: " + (this.SHIPS_COUNT - gameBoard.getAliveShipsCount()) + "  ");
+        System.out.print("Ships alive: " + this.board.getAliveShipsCount() + "  ");
+        System.out.print("Ships destroyed: " + (this.SHIPS_COUNT - this.board.getAliveShipsCount()) + "  ");
         System.out.println("Shots remain: " + shotAttempts);
     }
 }

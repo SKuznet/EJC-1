@@ -7,7 +7,7 @@ import java.util.List;
  * GameBoard represents game board with cells for BattleShip game
  *
  */
-class GameBoard {
+class Board {
     private final int BOARD_SIZE = 10;
     private final int SHIPS_TYPES = 4;
     private final int MAX_SHIP_SIZE = 4;
@@ -16,18 +16,12 @@ class GameBoard {
     private final char MISS_SHOT_CELL = 'o';
     private final char SHIP_SHOT_CELL = '*';
 
-
-
-
-    private Square[][] gameBoardCells;
-    /**
-     * list with available cells to be parts of the ship
-     */
+    private Square[][] squares;
     private List<Square> availableCellList;
     private List<Ship> shipList;
 
-    GameBoard() {
-        this.gameBoardCells = new Square[this.BOARD_SIZE][this.BOARD_SIZE];
+    Board() {
+        this.squares = new Square[this.BOARD_SIZE][this.BOARD_SIZE];
         this.availableCellList = new ArrayList<>(this.BOARD_SIZE * this.BOARD_SIZE);
         this.shipList = new ArrayList<>();
         makeRandomBoard();
@@ -38,14 +32,14 @@ class GameBoard {
      * <p>In order to avoid the impossibility of arranging ships start arranging from longest ships to shortest
      */
     private void makeRandomBoard() {
-        for (int i = 0; i < gameBoardCells.length; ++i) {
-            for (int j = 0; j < gameBoardCells[i].length; ++j) {
-                if (gameBoardCells[i][j] == null) {
-                    gameBoardCells[i][j] = new Square(i, j);
+        for (int i = 0; i < this.squares.length; ++i) {
+            for (int j = 0; j < this.squares[i].length; ++j) {
+                if (this.squares[i][j] == null) {
+                    this.squares[i][j] = new Square(i, j);
                 } else {
-                    gameBoardCells[i][j].emptySquare();
+                    this.squares[i][j].emptySquare();
                 }
-                availableCellList.add(gameBoardCells[i][j]);
+                availableCellList.add(this.squares[i][j]);
             }
         }
         int size = this.MAX_SHIP_SIZE;
@@ -74,9 +68,9 @@ class GameBoard {
             for (int i = 0; i < shipSize; ++i) {
                 currentPositionList = new ArrayList<>(shipSize);
                 for (int j = 0; j < shipSize; ++j) {
-                    if (square.getRow() - i + j < gameBoardCells.length && square.getRow() - i + j >= 0
-                            && availableCellList.contains(gameBoardCells[square.getRow() - i + j][square.getColumn()])) {
-                        currentPositionList.add(gameBoardCells[square.getRow() - i + j][square.getColumn()]);
+                    if (square.getRow() - i + j < this.squares.length && square.getRow() - i + j >= 0
+                            && availableCellList.contains(this.squares[square.getRow() - i + j][square.getColumn()])) {
+                        currentPositionList.add(this.squares[square.getRow() - i + j][square.getColumn()]);
                     } else {
                         continue nextPositionHorizontal;
                     }
@@ -87,9 +81,9 @@ class GameBoard {
             for (int i = 0; i < shipSize; ++i) {
                 currentPositionList = new ArrayList<>(shipSize);
                 for (int j = 0; j < shipSize; ++j) {
-                    if (square.getColumn() - i + j < gameBoardCells[0].length && square.getColumn() - i + j >= 0
-                            && availableCellList.contains(gameBoardCells[square.getRow()][square.getColumn() - i + j])) {
-                        currentPositionList.add(gameBoardCells[square.getRow()][square.getColumn() - i + j]);
+                    if (square.getColumn() - i + j < this.squares[0].length && square.getColumn() - i + j >= 0
+                            && availableCellList.contains(this.squares[square.getRow()][square.getColumn() - i + j])) {
+                        currentPositionList.add(this.squares[square.getRow()][square.getColumn() - i + j]);
                     } else {
                         continue nextPositionVertical;
                     }
@@ -118,9 +112,9 @@ class GameBoard {
      */
     private void setShipShadow(Ship ship) {
         boolean isExistMinRow = ship.getMinShipRow() > 0;
-        boolean isExistMaxRow = ship.getMaxShipRow() + 1 != gameBoardCells.length;
+        boolean isExistMaxRow = ship.getMaxShipRow() + 1 != this.squares.length;
         boolean isExistMinCol = ship.getMinShipCol() > 0;
-        boolean isExistMaxCol = ship.getMaxShipCol() + 1 != gameBoardCells[0].length;
+        boolean isExistMaxCol = ship.getMaxShipCol() + 1 != this.squares[0].length;
         int minShadowRow = isExistMinRow ? ship.getMinShipRow() - 1 : ship.getMinShipRow();
         int maxShadowRow = isExistMaxRow ? ship.getMaxShipRow() + 1 : ship.getMaxShipRow();
         int minShadowCol = isExistMinCol ? ship.getMinShipCol() - 1 : ship.getMinShipCol();
@@ -131,18 +125,18 @@ class GameBoard {
 
         for (int i = 0; i < horLength; ++i) {
             if (isExistMinRow) {
-                ship.getSurroundingSquares().add(gameBoardCells[minShadowRow][minShadowCol + i]);
+                ship.getSurroundingSquares().add(this.squares[minShadowRow][minShadowCol + i]);
             }
             if (isExistMaxRow) {
-                ship.getSurroundingSquares().add(gameBoardCells[maxShadowRow][minShadowCol + i]);
+                ship.getSurroundingSquares().add(this.squares[maxShadowRow][minShadowCol + i]);
             }
         }
         for (int i = verticalStartPos; i < verticalLength; ++i) {
             if (isExistMinCol) {
-                ship.getSurroundingSquares().add(gameBoardCells[minShadowRow + i][minShadowCol]);
+                ship.getSurroundingSquares().add(this.squares[minShadowRow + i][minShadowCol]);
             }
             if (isExistMaxCol) {
-                ship.getSurroundingSquares().add(gameBoardCells[minShadowRow + i][maxShadowCol]);
+                ship.getSurroundingSquares().add(this.squares[minShadowRow + i][maxShadowCol]);
             }
         }
         availableCellList.removeAll(ship.getSurroundingSquares());
@@ -152,8 +146,8 @@ class GameBoard {
      * Clear game board and randomly make new game board ready to play
      */
     void reArrangeGameBoard() {
-        availableCellList.clear();
-        shipList.clear();
+        this.availableCellList.clear();
+        this.shipList.clear();
         makeRandomBoard();
     }
 
@@ -167,14 +161,14 @@ class GameBoard {
      * <code>1</code> if cell is part of the ship and has not been already shot
      */
     int markShot(int row, int col) {
-        if (gameBoardCells[row][col].isShot()) {
+        if (this.squares[row][col].isShot()) {
             return -1;
         }
-        gameBoardCells[row][col].setShotFlag(true);
-        if (gameBoardCells[row][col].containsShip()) {
+        this.squares[row][col].setShotFlag(true);
+        if (this.squares[row][col].containsShip()) {
             Ship currentShip = null;
             for (Ship ship : shipList) {
-                if (ship.getSquares().contains(gameBoardCells[row][col])) {
+                if (ship.getSquares().contains(this.squares[row][col])) {
                     currentShip = ship;
                 }
             }
@@ -210,8 +204,8 @@ class GameBoard {
                 System.out.print(rowNum + " ");
             }
             for (int j = 0; j < this.BOARD_SIZE; ++j) {
-                if (gameBoardCells[i][j].isShot()) {
-                    if (gameBoardCells[i][j].containsShip()) {
+                if (this.squares[i][j].isShot()) {
+                    if (this.squares[i][j].containsShip()) {
                         System.out.print(this.SHIP_SHOT_CELL + "  ");
                     } else {
                         System.out.print(this.MISS_SHOT_CELL + "  ");
