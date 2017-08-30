@@ -9,17 +9,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-/**
- * This class generates .csv files and put it in main_data directory
- */
 public class CsvGenerator {
-    private static String file_name = Constants.DIR_STRING + "\\document.csv";
+    private static String file_name = Constants.DIR_STRING + "\\doc.csv";
 
     /**
-     * Read file line by line and adds info in array
+     * Reads file line by line and adds info in array
      *
      * @param bufferedReader - reader form our .txt file
-     * @return ArrayList with information - names and sites
+     * @return ArrayList - list of information with names and sites
      */
     private ArrayList<String> inputData(BufferedReader bufferedReader){
         String strLine;
@@ -35,20 +32,21 @@ public class CsvGenerator {
     }
 
     /**
-     * generates data for .csv files randomly(pseudo)
+     * Generates .csv files with random data
      *
      * @param nameData - file with information - names and sites
-     * @return randomly generated String
+     * @return String - randomly generated String
      */
     private String stringGeneration(ArrayList<String> nameData){
-        int random_number = 100 + (int)(Math.random() * 901);
-        int random_number2 = (int)(Math.random() * 21);
-        int random_number3 = 21 + (int)(Math.random() * 21);
-        int random_number4 = (int)(Math.random() * 1000000001);
+        int randomNumber1 = 100 + (int)(Math.random() * 901);
+        int randomNumber2 = (int)(Math.random() * 21);
+        int randomNumber3 = 21 + (int)(Math.random() * 21);
+        int randomNumber4 = (int)(Math.random() * 1000000001);
 
-        String sites = nameData.get(random_number3);
-        String names = nameData.get(random_number2);
-        return random_number + ";" + sites + ";" + random_number4 + ";" + names;
+        String sites = nameData.get(randomNumber3);
+        String names = nameData.get(randomNumber2);
+
+        return randomNumber1 + Constants.DELIMITER + sites + Constants.DELIMITER + randomNumber4 + Constants.DELIMITER + names;
     }
 
     /**
@@ -59,7 +57,7 @@ public class CsvGenerator {
      */
     private void dataGeneration(BufferedWriter bufferedWriter, ArrayList<String> nameData) {
         try {
-            String mainLine = "id;url;time;user";
+            String mainLine = "id" + Constants.DELIMITER + "url" + Constants.DELIMITER + "time" + Constants.DELIMITER + "user";
             bufferedWriter.write(mainLine + "\n");
             for (int i = 0; i < 10; i++) {
                 String string = stringGeneration(nameData);
@@ -70,10 +68,15 @@ public class CsvGenerator {
         }
     }
 
+    /**
+     * Starts generating of files
+     *
+     * @param args - command line arguments
+     */
     public static void main(String[] args) {
         CsvGenerator gen = new CsvGenerator();
         try {
-            FileInputStream names = new FileInputStream(Constants.DIR_STRING + "\\namesAndSites.txt");
+            FileInputStream names = new FileInputStream(Constants.DIR_STRING + "\\STRING_LIST.txt");
             DataInputStream in = new DataInputStream(names);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             FileWriter offStream = new FileWriter(file_name);

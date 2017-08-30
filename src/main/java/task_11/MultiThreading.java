@@ -11,11 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Multithreaded csv parser with output report
- *
- * Parses info about users url activity
- */
 public class MultiThreading {
     private volatile Map<String, Long> reportData = new ConcurrentHashMap<>();
 
@@ -52,7 +47,7 @@ public class MultiThreading {
     }
 
     /**
-     * output report about users's activities
+     * Writes report about user activities
      */
     private void writeToFile() {
         File outputFile = new File(Constants.DIRECTORY,Constants.OUTPUT_NAME);
@@ -60,7 +55,7 @@ public class MultiThreading {
             output.write(Constants.HEADER + "\n");
             Map<String, Long> treeMap = new TreeMap<>(reportData);
             for (Map.Entry keyAndValue : treeMap.entrySet()){
-                output.write(keyAndValue.getKey() + Constants.DIVIDER + keyAndValue.getValue());
+                output.write(keyAndValue.getKey() + Constants.DELIMITER + keyAndValue.getValue());
                 output.write("\n");
             }
         } catch (IOException e) {
@@ -68,7 +63,10 @@ public class MultiThreading {
         }
     }
 
-    void go() {
+    /**
+     * Starts .csv parsing
+     */
+    void start() {
         processAllFilesByMultiThreading();
         writeToFile();
     }
